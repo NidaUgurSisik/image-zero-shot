@@ -47,7 +47,7 @@ st.write(len(uploaded_file))
 result = ""
 list_keywords = []
 percent_complete = 0
-time_scale = 100 / len(uploaded_file)
+
 if uploaded_file is not None:
     form = st.form(key="annotation")
     with form:
@@ -61,10 +61,11 @@ if uploaded_file is not None:
 
             submitted = st.form_submit_button(label="Submit")
     for i in uploaded_file:
+        time_scale = 100 / len(uploaded_file)
         progress_text = "Operation in progress. Please wait."
         my_bar = st.progress(0, text=progress_text)
         time.sleep(0.1)
-        my_bar.progress(percent_complete + time_scale, text=progress_text)
+        my_bar.progress(percent_complete + 1, text=progress_text)
         image = Image.open(i)
         #st.image(image, caption='')
 
