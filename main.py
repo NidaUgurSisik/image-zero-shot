@@ -41,13 +41,11 @@ with c2:
 # Convert PDF to JPG
 
 uploaded_file = st.file_uploader("Upload image", accept_multiple_files=True, type=["png", "jpg"])
-st.write(len(uploaded_file))
-
 
 result = ""
 list_keywords = []
 percent_complete = 0
-
+image_list = []
 if uploaded_file is not None:
     form = st.form(key="annotation")
     with form:
@@ -82,5 +80,6 @@ if uploaded_file is not None:
             probs = logits_per_image.softmax(dim=1) # we can take the softmax to get the label probabilities
             max_idx, max_val = max(enumerate(probs[0].tolist()), key=lambda x: x[1])
             #st.write(question_input.split(','))
+            image_list.append(i.name,labels_from_st_tags[max_idx], max_val)
             st.write(i.name,labels_from_st_tags[max_idx], max_val)
-            
+    st.write(image_list)
