@@ -30,7 +30,7 @@ with c2:
     c31, c32 = st.columns([12, 2])
     with c31:
         st.caption("")
-        st.title("Shot 0")
+        st.title("İmage Zero Shot")
     with c32:
         st.image(
             "images/logo.png",
@@ -45,13 +45,11 @@ st.write(len(uploaded_file))
 progress_text = "Operation in progress. Please wait."
 my_bar = st.progress(0, text=progress_text)
 
-for percent_complete in range(100):
-    time.sleep(0.1)
-    my_bar.progress(percent_complete + 1, text=progress_text)
-
 
 result = ""
 list_keywords = []
+percent_complete = 0
+time_scale = 100 / len(uploaded_file)
 if uploaded_file is not None:
     form = st.form(key="annotation")
     with form:
@@ -66,7 +64,7 @@ if uploaded_file is not None:
             submitted = st.form_submit_button(label="Submit")
     for i in uploaded_file:
         time.sleep(0.1)
-        my_bar.progress(percent_complete + 1, text=progress_text)
+        my_bar.progress(percent_complete + time_scale, text=progress_text)
         image = Image.open(i)
         #st.image(image, caption='')
 
@@ -83,3 +81,4 @@ if uploaded_file is not None:
             max_idx, max_val = max(enumerate(probs[0].tolist()), key=lambda x: x[1])
             #st.write(question_input.split(','))
             st.write(i.name,labels_from_st_tags[max_idx], max_val)
+            percent_complete = percent_complete + time_scale
