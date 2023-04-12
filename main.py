@@ -82,4 +82,4 @@ if uploaded_file is not None:
             max_idx, max_val = max(enumerate(probs[0].tolist()), key=lambda x: x[1])
             #st.write(question_input.split(','))
             st.write(i.name,labels_from_st_tags[max_idx], max_val)
-            percent_complete = percent_complete + time_scale
+            
