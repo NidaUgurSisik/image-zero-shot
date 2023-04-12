@@ -42,8 +42,6 @@ with c2:
 
 uploaded_file = st.file_uploader("Upload image", accept_multiple_files=True, type=["png", "jpg"])
 st.write(len(uploaded_file))
-progress_text = "Operation in progress. Please wait."
-my_bar = st.progress(0, text=progress_text)
 
 
 result = ""
@@ -63,6 +61,8 @@ if uploaded_file is not None:
 
             submitted = st.form_submit_button(label="Submit")
     for i in uploaded_file:
+        progress_text = "Operation in progress. Please wait."
+        my_bar = st.progress(0, text=progress_text)
         time.sleep(0.1)
         my_bar.progress(percent_complete + time_scale, text=progress_text)
         image = Image.open(i)
