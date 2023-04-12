@@ -81,5 +81,5 @@ if uploaded_file is not None:
             max_idx, max_val = max(enumerate(probs[0].tolist()), key=lambda x: x[1])
             #st.write(question_input.split(','))
             image_list.append(i.name,labels_from_st_tags[max_idx], max_val)
-            st.write(i.name,labels_from_st_tags[max_idx], max_val)
+            #st.write(i.name,labels_from_st_tags[max_idx], max_val)
     st.write(image_list)
