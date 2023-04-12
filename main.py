@@ -3,6 +3,7 @@ import requests
 from transformers import AutoProcessor, CLIPModel
 import streamlit as st
 from streamlit_tags import st_tags
+import time
 from functionforDownloadButtons import download_button
 
 def _max_width_():
@@ -40,6 +41,13 @@ with c2:
 # Convert PDF to JPG
 
 uploaded_file = st.file_uploader("Upload image", accept_multiple_files=True, type=["png", "jpg"])
+st.write(len(uploaded_file))
+progress_text = "Operation in progress. Please wait."
+my_bar = st.progress(0, text=progress_text)
+
+for percent_complete in range(100):
+    time.sleep(0.1)
+    my_bar.progress(percent_complete + 1, text=progress_text)
 
 
 result = ""
@@ -57,6 +65,8 @@ if uploaded_file is not None:
 
             submitted = st.form_submit_button(label="Submit")
     for i in uploaded_file:
+        time.sleep(0.1)
+        my_bar.progress(percent_complete + 1, text=progress_text)
         image = Image.open(i)
         #st.image(image, caption='')
 
