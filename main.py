@@ -38,8 +38,6 @@ with c2:
         )
 
 
-# Convert PDF to JPG
-
 uploaded_file = st.file_uploader("Upload image", accept_multiple_files=True, type=["png", "jpg"])
 
 result = ""
@@ -58,12 +56,7 @@ if uploaded_file is not None:
             )
 
             submitted = st.form_submit_button(label="Submit")
-    progress_text = "Operation in progress. Please wait."
-    my_bar = st.progress(0, text=progress_text)
 
-    for percent_complete in range(100):
-        time.sleep(0.1)
-        my_bar.progress(percent_complete + 1, text=progress_text)
     for i in uploaded_file:
         image = Image.open(i)
         #st.image(image, caption='')
@@ -79,7 +72,5 @@ if uploaded_file is not None:
             logits_per_image = outputs.logits_per_image # this is the image-text similarity score
             probs = logits_per_image.softmax(dim=1) # we can take the softmax to get the label probabilities
             max_idx, max_val = max(enumerate(probs[0].tolist()), key=lambda x: x[1])
-            #st.write(question_input.split(','))
-            image_list.append(i.name,labels_from_st_tags[max_idx], max_val)
-            #st.write(i.name,labels_from_st_tags[max_idx], max_val)
-    st.write(image_list)
+
+            st.write(i.name,labels_from_st_tags[max_idx], max_val)
