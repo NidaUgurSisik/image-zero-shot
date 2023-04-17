@@ -78,7 +78,7 @@ if uploaded_file is not None:
             probs = logits_per_image.softmax(dim=1) # we can take the softmax to get the label probabilities
             max_idx, max_val = max(enumerate(probs[0].tolist()), key=lambda x: x[1])
 
-            st.write(i.name,labels_from_st_tags[max_idx], max_val)
+            #st.write(i.name,labels_from_st_tags[max_idx], max_val)
             new_row = {'Image':i.name, 'Label':labels_from_st_tags[max_idx], 'Prob':max_val}
             df = df.append(new_row, ignore_index=True)
            
