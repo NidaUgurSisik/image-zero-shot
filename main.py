@@ -79,9 +79,4 @@ if uploaded_file is not None:
             df2 = {'Image': i.name, 'Label': labels_from_st_tags[max_idx], 'Probability': max_val}
             df = df.append(df2, ignore_index = True)
 
-        st.download_button(
-            label="Download data as CSV",
-            data=df,
-            file_name= 'zero_shot_image.csv',
-            mime='text/csv',
-        )
+        
