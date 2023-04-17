@@ -47,7 +47,7 @@ uploaded_file = st.file_uploader("Upload image", accept_multiple_files=True, typ
 
 result = ""
 list_keywords = []
-df = pd.DataFrame()
+df = pd.DataFrame(columns=['Image','Label','Prob'])
 image_list = []
 if uploaded_file is not None:
     form = st.form(key="annotation")
@@ -80,8 +80,7 @@ if uploaded_file is not None:
 
             st.write(i.name,labels_from_st_tags[max_idx], max_val)
 
-            df2 = pd.DataFrame({'Image': i.name, 'Label': labels_from_st_tags[max_idx], 'Probability': max_val})
-            df = df.append(df2, ignore_index = True)
+            df[Image] = i.name
         csv = convert_df(df)
     st.download_button(
         label="Download data as CSV",
