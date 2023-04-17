@@ -54,9 +54,9 @@ if uploaded_file is not None:
     with form:
 
             labels_from_st_tags = st_tags(
-                value=[],
+                value=['positive', 'negative'],
                 maxtags=5,
-                suggestions=[],
+                suggestions=['positive', 'negative'],
                 label="",
             )
 
