@@ -1,4 +1,5 @@
 from PIL import Image
+import pandas as pd
 import requests
 from transformers import AutoProcessor, CLIPModel
 import streamlit as st
@@ -74,3 +75,13 @@ if uploaded_file is not None:
             max_idx, max_val = max(enumerate(probs[0].tolist()), key=lambda x: x[1])
 
             st.write(i.name,labels_from_st_tags[max_idx], max_val)
+
+            df2 = {'Image': i.name, 'Label': labels_from_st_tags[max_idx], 'Probability': max_val}
+            df = df.append(df2, ignore_index = True)
+
+    st.download_button(
+        label="Download data as CSV",
+        data=df,
+        file_name= 'zero_shot_image.csv',
+        mime='text/csv',
+    )
