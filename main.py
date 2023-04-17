@@ -7,6 +7,10 @@ from streamlit_tags import st_tags
 import time
 from functionforDownloadButtons import download_button
 
+def convert_df(df):
+    # IMPORTANT: Cache the conversion to prevent computation on every rerun
+    return df.to_csv().encode('utf-8')
+
 def _max_width_():
     max_width_str = f"max-width: 1800px;"
     st.markdown(
@@ -75,3 +79,13 @@ if uploaded_file is not None:
             max_idx, max_val = max(enumerate(probs[0].tolist()), key=lambda x: x[1])
 
             st.write(i.name,labels_from_st_tags[max_idx], max_val)
+
+            df2 = pd.DataFrame({'Image': str(i.name), 'Label': labels_from_st_tags[max_idx], 'Probability': float(max_val)})
+            df = df.append(df2, ignore_index = True)
+        csv = convert_df(df)
+        st.download_button(
+            label="Download data as CSV",
+            data=csv,
+            file_name= 'zero_shot_image.csv',
+            mime='text/csv',
+        )
