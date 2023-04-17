@@ -55,7 +55,7 @@ if uploaded_file is not None:
                 label="",
             )
 
-    submitted = st.form_submit_button(label="Submit")
+            submitted = st.form_submit_button(label="Submit")
 
     for i in uploaded_file:
         image = Image.open(i)
