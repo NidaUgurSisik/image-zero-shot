@@ -49,9 +49,9 @@ if uploaded_file is not None:
     with form:
 
             labels_from_st_tags = st_tags(
-                value=["Example-1", "Example-2"],
+                value=[],
                 maxtags=5,
-                suggestions=["Example-1", "Example-2"],
+                suggestions=[],
                 label="",
             )
 
