@@ -35,7 +35,7 @@ with c2:
     c31, c32 = st.columns([12, 2])
     with c31:
         st.caption("")
-        st.title("İmage Zero Shot")
+        st.title("Image Zero Shot")
     with c32:
         st.image(
             "images/logo.png",
