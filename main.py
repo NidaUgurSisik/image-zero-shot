@@ -76,7 +76,12 @@ if uploaded_file is not None:
 
             st.write(i.name,labels_from_st_tags[max_idx], max_val)
 
-            df2 = {'Image': i.name, 'Label': labels_from_st_tags[max_idx], 'Probability': max_val}
-            edited_df = st.experimental_data_editor(df2)
+            df2 = pd.DataFrame({'Image': i.name, 'Label': labels_from_st_tags[max_idx], 'Probability': max_val})
+            df = df.append(df2, ignore_index = True)
 
-        
+        st.download_button(
+            label="Download data as CSV",
+            data=df,
+            file_name= 'zero_shot_image.csv',
+            mime='text/csv',
+        )
