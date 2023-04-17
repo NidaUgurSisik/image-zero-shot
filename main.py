@@ -82,7 +82,7 @@ if uploaded_file is not None:
             new_row = {'Image':i.name, 'Label':labels_from_st_tags[max_idx], 'Prob':max_val}
             df = df.append(new_row, ignore_index=True)
            
-        csv = convert_df(df)
+    csv = convert_df(df)
     st.download_button(
         label="Download data as CSV",
         data=csv,
