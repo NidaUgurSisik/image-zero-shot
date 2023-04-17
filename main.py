@@ -61,7 +61,7 @@ if uploaded_file is not None:
         image = Image.open(i)
         #st.image(image, caption='')
 
-        if uploaded_file is not None and submitted is not None:
+        if uploaded_file is not None and submitted is True:
             
             model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
             processor = AutoProcessor.from_pretrained("openai/clip-vit-base-patch32")
