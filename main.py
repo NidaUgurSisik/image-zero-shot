@@ -43,7 +43,7 @@ uploaded_file = st.file_uploader("Upload image", accept_multiple_files=True, typ
 
 result = ""
 list_keywords = []
-percent_complete = 0
+df = pd.DataFrame()
 image_list = []
 if uploaded_file is not None:
     form = st.form(key="annotation")
